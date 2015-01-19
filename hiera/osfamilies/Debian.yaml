@@ -1,0 +1,31 @@
+classes:
+    - apt
+
+apt::purge_sources_list: true
+apt::always_apt_update: true
+
+apt::sources:
+    debian-default:
+        location: http://ftp.belnet.be/debian/
+        release: jessie
+        repos: main contrib non-free
+    debian-updates:
+        location: http://security.debian.org/
+        release: jessie/updates
+        repos: main contrib non-free
+    debian-updates:
+        location: http://ftp.belnet.be/debian/
+        release: jessie-updates
+        repos: main contrib non-free
+    debian-backports:
+        location: http://ftp.belnet.be/debian/
+        release: jessie-backports
+        repos: main contrib non-free
+    gnome-encfs-manager:
+        location: http://download.opensuse.org/repositories/home:/moritzmolch:/gencfsm/Debian_7.0/
+        release: ''
+        repos: /
+        include_src: false
+        key: D1F3DBBF95FAD414
+        key_source: http://download.opensuse.org/repositories/home:moritzmolch:gencfsm/Debian_7.0/Release.key
+        notify: Package[gnome-encfs-manager]

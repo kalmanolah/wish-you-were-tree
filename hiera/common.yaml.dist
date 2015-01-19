@@ -1,0 +1,312 @@
+classes:
+    - bootstrap
+    - spotify
+    - locales
+    - sudo
+    - sudo::configs
+
+locales::locales: ['en_US.UTF-8 UTF-8']
+locales::default_locale: 'en_US.UTF-8'
+
+sudo::configs:
+    defaults:
+        source: puppet:///modules/bootstrap/sudo/defaults
+        priority: 10
+    admins:
+        content: '%admins ALL=(ALL) NOPASSWD: ALL'
+        priority: 20
+    sudo:
+        content: '%sudo ALL=(ALL:ALL) ALL'
+        priority: 30
+
+bootstrap::auth::groups:
+    admins:
+        system: true
+        gid: 512
+    fuse:
+        system: true
+
+bootstrap::auth::users:
+    root:
+        password: %root_password_hash%
+        uid: 0
+        gid: 0
+        home: /root
+    kalman:
+        password: %user_password_hash%
+        uid: 1000
+        gid: 1000
+        groups: [admins, fuse]
+        comment: Kalman Olah
+        home: /home/kalman
+        shell: /bin/zsh
+
+bootstrap::auth::ssh_authorized_keys:
+    kalman@workbox:
+        key: %user_public_key%
+        type: ssh-rsa
+        user: kalman
+
+bootstrap::extras::packages:
+    ? - scrot
+      - wget
+      - ncdu
+      - htop
+      - mpv
+      - mpd
+      - ncmpcpp
+      - suckless-tools
+      - gnome-core
+      - awesome
+      - awesome-extra
+      - nautilus-dropbox
+      - encfs
+      - gnome-encfs-manager
+      - zsh
+      - gnupg
+      - gnupg2
+      - irssi
+      - irssi-plugin-xmpp
+      - irssi-scripts
+      - keepassx
+      - git
+      - nfs-common
+      - cifs-utils
+      - rpcbind
+      - python-pip
+      - numlockx
+      - rxvt-unicode-256color
+    : {}
+
+    speedtest-cli:
+        provider: pip
+
+bootstrap::extras::vcsrepos:
+    # My stuff
+    /home/kalman/misc/awesome-config:
+        source: git://github.com/kalmanolah/awesome-config.git
+    /home/kalman/misc/vim-config:
+        source: git://github.com/kalmanolah/vim-config.git
+    /home/kalman/misc/misc-dotfiles:
+        source: git://github.com/kalmanolah/misc-dotfiles.git
+
+    # Third-party
+    /home/kalman/misc/prezto:
+        source: git://github.com/sorin-ionescu/prezto.git
+    /home/kalman/misc/irssi-libnotify:
+        source: https://code.google.com/p/irssi-libnotify
+    /home/kalman/misc/urxvt-perls:
+        source: git://github.com/muennich/urxvt-perls.git
+    /home/kalman/misc/powerline-fonts:
+        source: git://github.com/Lokaltog/powerline-fonts.git
+
+bootstrap::extras::files:
+    ? - /home/kalman
+      - /home/kalman/misc
+      - /home/kalman/misc/nas
+      - /home/kalman/misc/nas/misc
+      - /home/kalman/misc/nas/multimedia
+      - /home/kalman/misc/nas/public-nfs
+      - /home/kalman/bin
+      - /home/kalman/.irssi
+      - /home/kalman/.irssi/scripts
+      - /home/kalman/.irssi/scripts/autorun
+      - /home/kalman/.urxvt
+      - /home/kalman/.ncmpcpp
+      - /home/kalman/.gnupg
+      - /home/kalman/.config
+      - /home/kalman/.ssh
+      - /home/kalman/.mpd
+      - /home/kalman/.fonts
+      - /home/kalman/Music
+      - /home/kalman/Pictures
+      - /home/kalman/Pictures/screenshots
+    :
+        ensure: directory
+        owner: kalman
+        group: kalman
+
+    # ssh
+    /home/kalman/.ssh/id_rsa:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/ssh/id_rsa
+    /home/kalman/.ssh/id_rsa.pub:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/ssh/id_rsa.pub
+    /home/kalman/.ssh/config:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/ssh/config
+
+    # vim
+    /home/kalman/.vimrc:
+        ensure: link
+        target: /home/kalman/misc/vim-config/.vimrc
+    /home/kalman/.vim:
+        ensure: link
+        target: /home/kalman/misc/vim-config
+        force: true
+
+    # zsh, prezto
+    /home/kalman/.zprezto:
+        ensure: link
+        target: /home/kalman/misc/prezto
+        force: true
+    /home/kalman/.zlogin:
+        ensure: link
+        target: /home/kalman/misc/prezto/runcoms/zlogin
+    /home/kalman/.zlogout:
+        ensure: link
+        target: /home/kalman/misc/prezto/runcoms/zlogout
+    /home/kalman/.zprofile:
+        ensure: link
+        target: /home/kalman/misc/prezto/runcoms/zprofile
+    /home/kalman/.zshenv:
+        ensure: link
+        target: /home/kalman/misc/prezto/runcoms/zshenv
+    /home/kalman/.zshrc:
+        ensure: link
+        target: /home/kalman/misc/prezto/runcoms/zshrc
+    /home/kalman/.zpreztorc:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/zsh/prezto/.zpreztorc
+
+    # gnupg
+    /home/kalman/.gnupg/secring.gpg:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/gnupg/secring.gpg
+    /home/kalman/.gnupg/pubring.gpg:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/gnupg/pubring.gpg
+
+    # Awesome
+    /home/kalman/.config/awesome:
+        ensure: link
+        target: /home/kalman/misc/awesome-config
+        force: true
+    /usr/share/xsessions/awesome-gnome.desktop:
+        ensure: present
+        source: puppet:///modules/bootstrap/desktop/awesome-gnome.desktop
+        owner: root
+        group: root
+        mode: '0644'
+    /usr/share/applications/awesome.desktop:
+        ensure: present
+        source: puppet:///modules/bootstrap/desktop/awesome.desktop
+        owner: root
+        group: root
+        mode: '0644'
+    /usr/share/gnome-session/sessions/awesome.session:
+        ensure: present
+        source: puppet:///modules/bootstrap/desktop/awesome.session
+        owner: root
+        group: root
+        mode: '0644'
+    /usr/bin/awesome-session:
+        ensure: present
+        source: puppet:///modules/bootstrap/desktop/awesome-session.sh
+        owner: root
+        group: root
+        mode: '0755'
+
+    # irssi, irssi-xmpp
+    /home/kalman/.irssi/config:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/irssi/config
+    /home/kalman/.irssi/scripts/autorun/nm.pl:
+        ensure: link
+        target: /usr/share/irssi/scripts/nm.pl
+    /home/kalman/.irssi/scripts/autorun/trackbar.pl:
+        ensure: link
+        target: /usr/share/irssi/scripts/trackbar.pl
+    /home/kalman/.irssi/scripts/autorun/go.pl:
+        ensure: link
+        target: /usr/share/irssi/scripts/go.pl
+    /home/kalman/.irssi/scripts/autorun/adv_windowlist.pl:
+        ensure: present
+        source: puppet:///modules/bootstrap/irssi/adv_windowlist.pl
+    /home/kalman/.irssi/scripts/autorun/notify.pl:
+        ensure: link
+        target: /home/kalman/misc/irssi-libnotify/notify.pl
+    /home/kalman/bin/irssi-notifier.sh:
+        ensure: link
+        target: /home/kalman/misc/irssi-libnotify/irssi-notifier.sh
+    /home/kalman/bin/notify-listener.py:
+        ensure: link
+        target: /home/kalman/misc/irssi-libnotify/notify-listener.py
+    /home/kalman/.irssi/pbrisbin.theme:
+        ensure: present
+        source: puppet:///modules/bootstrap/irssi/pbrisbin.theme
+    /home/kalman/.irssi/startup:
+        ensure: present
+        source: puppet:///modules/bootstrap/irssi/startup
+
+    # mpd, ncmpcpp
+    /home/kalman/.mpd/mpd.conf:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/mpd/mpd.conf
+    /home/kalman/.ncmpcpp/config:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/ncmpcpp/config
+
+    # tmux
+    /home/kalman/.tmux.conf:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/tmux/.tmux.conf
+
+    # urxvt
+    /home/kalman/.urxvt/ext:
+        ensure: link
+        target: /home/kalman/misc/urxvt-perls
+        force: true
+    /home/kalman/.Xdefaults:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/.Xdefaults
+
+    # fonts
+    /home/kalman/.fonts/powerline-fonts:
+        ensure: link
+        target: /home/kalman/misc/powerline-fonts
+        force: true
+
+    # nas
+    /home/kalman/.mynascredentials:
+        ensure: present
+        source: /home/kalman/Encfs/Secure/nas/.mynascredentials
+        force: true
+
+bootstrap::extras::mounts:
+    /home/kalman/misc/nas/public-nfs:
+        fstype: nfs
+        device: suzuna:Public
+        options: user,vers=3
+        require:
+            - Package[nfs-common]
+            - Package[rpcbind]
+
+    /home/kalman/misc/nas/misc:
+        fstype: cifs
+        device: //suzuna/Miscellaneous
+        options: user,uid=kalman,credentials=/home/kalman/.mynascredentials
+        require:
+            - Package[cifs-utils]
+            - File[/home/kalman/.mynascredentials]
+
+    /home/kalman/misc/nas/multimedia:
+        fstype: cifs
+        device: //suzuna/Multimedia
+        options: user,uid=kalman,credentials=/home/kalman/.mynascredentials
+        require:
+            - Package[cifs-utils]
+            - File[/home/kalman/.mynascredentials]
+
+bootstrap::extras::augeas:
+    set_fuse_conf:
+        context: /files/etc/fuse.conf
+        changes: clear user_allow_other
+
+bootstrap::extras::execs:
+    disable_gnome_cursor_plugin:
+        command: dconf write /org/gnome/settings-daemon/plugins/cursor/active false
+        unless: test `dconf read /org/gnome/settings-daemon/plugins/cursor/active` = false
+        user: kalman
+        group: kalman

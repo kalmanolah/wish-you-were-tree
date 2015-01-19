@@ -1,0 +1,21 @@
+[submodule "modules/spotify"]
+	path = modules/spotify
+	url = https://github.com/garethr/garethr-spotify.git
+[submodule "modules/apt"]
+	path = modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt.git
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "modules/locales"]
+	path = modules/locales
+	url = https://github.com/saz/puppet-locales.git
+[submodule "modules/sudo"]
+	path = modules/sudo
+	url = https://github.com/saz/puppet-sudo.git
+[submodule "modules/concat_native"]
+	path = modules/concat_native
+	url = https://github.com/theforeman/puppet-concat.git
+[submodule "modules/vcsrepo"]
+	path = modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
