@@ -99,6 +99,8 @@ bootstrap::extras::vcsrepos:
         source: git://github.com/muennich/urxvt-perls.git
     /home/kalman/misc/powerline-fonts:
         source: git://github.com/Lokaltog/powerline-fonts.git
+    /home/kalman/misc/scripts.irssi.org:
+        source: git://github.com/irssi/scripts.irssi.org.git
 
 bootstrap::extras::files:
     ? - /home/kalman
@@ -227,6 +229,9 @@ bootstrap::extras::files:
     /home/kalman/.irssi/scripts/autorun/notify.pl:
         ensure: link
         target: /home/kalman/misc/irssi-libnotify/notify.pl
+    /home/kalman/.irssi/scripts/autorun/emo.pl:
+        ensure: link
+        target: /home/kalman/misc/scripts.irssi.org/scripts/emo.pl
     /home/kalman/bin/irssi-notifier.sh:
         ensure: link
         target: /home/kalman/misc/irssi-libnotify/irssi-notifier.sh
