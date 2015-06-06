@@ -102,6 +102,16 @@ bootstrap::extras::vcsrepos:
     /home/kalman/misc/scripts.irssi.org:
         source: git://github.com/irssi/scripts.irssi.org.git
 
+bootstrap::extras::archives:
+    tmsu:
+        url: https://github.com/oniony/TMSU/releases/download/v0.5.2/tmsu-x86_64-0.5.2.tgz
+        src_target: /tmp
+        follow_redirects: true
+        checksum: false
+        strip_components: 1
+        target: /home/kalman/misc/tmsu
+        require: File[/home/kalman/misc]
+
 bootstrap::extras::files:
     ? - /home/kalman
       - /home/kalman/misc
@@ -109,6 +119,7 @@ bootstrap::extras::files:
       - /home/kalman/misc/nas/misc
       - /home/kalman/misc/nas/multimedia
       - /home/kalman/misc/nas/public-nfs
+      - /home/kalman/misc/tmsu-vfs
       - /home/kalman/bin
       - /home/kalman/.irssi
       - /home/kalman/.irssi/scripts
@@ -279,6 +290,17 @@ bootstrap::extras::files:
         source: /home/kalman/Encfs/Secure/nas/.mynascredentials
         force: true
 
+    # tmsu
+    /usr/bin/tmsu:
+        ensure: link
+        target: /home/kalman/misc/tmsu/bin/tmsu
+        force: true
+
+    /sbin/mount.tmsu:
+        ensure: link
+        target: /home/kalman/misc/tmsu/bin/mount.tmsu
+        force: true
+
 bootstrap::extras::mounts:
     /home/kalman/misc/nas/public-nfs:
         fstype: nfs
@@ -303,6 +325,11 @@ bootstrap::extras::mounts:
         require:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials]
+
+    /home/kalman/misc/tmsu-vfs:
+        fstype: tmsu
+        device: /home/kalman/.tmsu/default.db
+        options: user,noauto
 
 bootstrap::extras::augeas:
     set_fuse_conf:

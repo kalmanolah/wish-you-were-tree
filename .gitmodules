@@ -19,3 +19,6 @@
 [submodule "modules/vcsrepo"]
 	path = modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
+[submodule "modules/archive"]
+	path = modules/archive
+	url = https://github.com/camptocamp/puppet-archive.git
