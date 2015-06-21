@@ -7,20 +7,20 @@ apt::always_apt_update: true
 apt::sources:
     debian-default:
         location: http://ftp.belnet.be/debian/
-        release: jessie
+        release: stretch
         repos: main contrib non-free
     debian-updates:
         location: http://security.debian.org/
-        release: jessie/updates
+        release: stretch/updates
         repos: main contrib non-free
     debian-updates:
         location: http://ftp.belnet.be/debian/
-        release: jessie-updates
+        release: stretch-updates
         repos: main contrib non-free
-    debian-backports:
-        location: http://ftp.belnet.be/debian/
-        release: jessie-backports
-        repos: main contrib non-free
+#    debian-backports:
+#        location: http://ftp.belnet.be/debian/
+#        release: stretch-backports
+#        repos: main contrib non-free
     gnome-encfs-manager:
         location: http://download.opensuse.org/repositories/home:/moritzmolch:/gencfsm/Debian_7.0/
         release: ''

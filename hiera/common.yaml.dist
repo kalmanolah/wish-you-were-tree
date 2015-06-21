@@ -305,7 +305,7 @@ bootstrap::extras::mounts:
     /home/kalman/misc/nas/public-nfs:
         fstype: nfs
         device: suzuna:Public
-        options: user,vers=3
+        options: user,noauto,vers=3
         require:
             - Package[nfs-common]
             - Package[rpcbind]
@@ -313,7 +313,7 @@ bootstrap::extras::mounts:
     /home/kalman/misc/nas/misc:
         fstype: cifs
         device: //suzuna/Miscellaneous
-        options: user,uid=kalman,credentials=/home/kalman/.mynascredentials
+        options: user,noauto,uid=kalman,credentials=/home/kalman/.mynascredentials
         require:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials]
@@ -321,7 +321,7 @@ bootstrap::extras::mounts:
     /home/kalman/misc/nas/multimedia:
         fstype: cifs
         device: //suzuna/Multimedia
-        options: user,uid=kalman,credentials=/home/kalman/.mynascredentials
+        options: user,noauto,uid=kalman,credentials=/home/kalman/.mynascredentials
         require:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials]
