@@ -77,6 +77,8 @@ bootstrap::extras::packages:
       - python-pip
       - numlockx
       - rxvt-unicode-256color
+      - ambiance-colors
+      - vivacious-colors
       # - blueproximity
     : {}
 
@@ -326,6 +328,12 @@ bootstrap::extras::files:
         source: /home/kalman/misc/misc-dotfiles/logitech_k810/50-k810.rules
         force: true
 
+    # GTK 2/3
+    /home/kalman/.config/gtk-3.0/gtk.css:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/gtk3/gtk.css
+        force: true
+
 bootstrap::extras::mounts:
     /home/kalman/misc/nas/public-nfs:
         fstype: nfs
@@ -373,5 +381,16 @@ bootstrap::extras::execs:
     disable_gnome_cursor_plugin:
         command: dconf write /org/gnome/settings-daemon/plugins/cursor/active false
         unless: test `dconf read /org/gnome/settings-daemon/plugins/cursor/active` = false
+        user: kalman
+        group: kalman
+
+    set_gtk_theme:
+        command: gsettings set org.gnome.desktop.interface gtk-theme Ambiance-Flat-Graphite-Pro
+        unless: test `gsettings get org.gnome.desktop.interface gtk-theme` = \'Ambiance-Flat-Graphite-Pro\'
+        user: kalman
+        group: kalman
+    set_icon_theme:
+        command: gsettings set org.gnome.desktop.interface icon-theme Vivacious-Colors-Full-Dark
+        unless: test `gsettings get org.gnome.desktop.interface icon-theme` = \'Vivacious-Colors-Full-Dark\'
         user: kalman
         group: kalman
