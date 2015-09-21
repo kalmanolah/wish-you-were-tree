@@ -7,5 +7,5 @@ My very own puppet tree, used for desktop/laptop.
 
 * Rename `hiera/common.yaml.dist` to `hiera/common.yaml` and replace placeholders
   such as `%root_pw_hash%`, etc..
-* Run `setup.sh`
-* Run `run-puppet.sh`
+* Run `./scripts/setup_puppet`
+* Run `./scripts/run_puppet`
