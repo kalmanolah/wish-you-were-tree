@@ -105,6 +105,8 @@ bootstrap::extras::vcsrepos:
         source: git://github.com/Lokaltog/powerline-fonts.git
     /home/kalman/misc/scripts.irssi.org:
         source: git://github.com/irssi/scripts.irssi.org.git
+    /home/kalman/misc/fira-code:
+        source: git://github.com/tonsky/FiraCode.git
 
 bootstrap::extras::archives:
     tmsu:
@@ -293,6 +295,10 @@ bootstrap::extras::files:
     /home/kalman/.fonts/powerline-fonts:
         ensure: link
         target: /home/kalman/misc/powerline-fonts
+        force: true
+    /home/kalman/.fonts/fira-code:
+        ensure: link
+        target: /home/kalman/misc/fira-code
         force: true
 
     # nas
