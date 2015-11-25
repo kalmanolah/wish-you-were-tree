@@ -408,3 +408,24 @@ bootstrap::extras::execs:
         unless: test `gsettings get org.gnome.desktop.interface icon-theme` = \'Vivacious-Colors-Full-Dark\'
         user: kalman
         group: kalman
+
+bootstrap::extras::file_lines:
+<% ['pkcs11', 'ssh', 'secrets'].each do |value| %>
+    # gnome_keyring_<%= value %>_show_in:
+    #     path:  /etc/xdg/autostart/gnome-keyring-<%= value %>.desktop
+    #     match: ^OnlyShowIn=
+    #     line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
+<% end %>
+    gnome_keyring_pkcs11_show_in:
+        path:  /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
+        match: ^OnlyShowIn=
+        line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
+    gnome_keyring_ssh_show_in:
+        path:  /etc/xdg/autostart/gnome-keyring-ssh.desktop
+        match: ^OnlyShowIn=
+        line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
+    gnome_keyring_secrets_show_in:
+        path:  /etc/xdg/autostart/gnome-keyring-secrets.desktop
+        match: ^OnlyShowIn=
+        line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
+

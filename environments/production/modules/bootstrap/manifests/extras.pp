@@ -1,14 +1,19 @@
 # Class for bootstrapping extra stuff
 class bootstrap::extras (
-  $files    = {},
-  $augeas   = {},
-  $vcsrepos = {},
-  $packages = {},
-  $mounts   = {},
-  $execs    = {},
-  $archives = {}
+  $files      = {},
+  $file_lines = {},
+  $augeas     = {},
+  $vcsrepos   = {},
+  $packages   = {},
+  $mounts     = {},
+  $execs      = {},
+  $archives   = {}
 ) {
   $file_defaults = {
+    ensure => 'present',
+  }
+
+  $file_line_defaults = {
     ensure => 'present',
   }
 
@@ -36,6 +41,7 @@ class bootstrap::extras (
   }
 
   create_resources(file, $files, $file_defaults)
+  create_resources(file_line, $file_lines, $file_line_defaults)
   create_resources(augeas, $augeas, $augeas_defaults)
   create_resources(vcsrepo, $vcsrepos, $vcsrepo_defaults)
   create_resources(package, $packages, $package_defaults)
