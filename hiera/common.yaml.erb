@@ -4,19 +4,23 @@ classes:
     - locales
     - sudo
     - sudo::configs
+    - timezone
 
-locales::locales: ['en_US.UTF-8 UTF-8']
+locales::locales:
+    - en_US.UTF-8 UTF-8
 locales::default_locale: 'en_US.UTF-8'
+
+timezone::timezone: Europe/Brussels
 
 sudo::configs:
     defaults:
-        source: puppet:///modules/bootstrap/sudo/defaults
+        content: "Defaults env_reset\nDefaults secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
         priority: 10
-    admins:
-        content: '%admins ALL=(ALL) NOPASSWD: ALL'
-        priority: 20
     sudo:
         content: '%sudo ALL=(ALL:ALL) ALL'
+        priority: 20
+    admins:
+        content: '%admins ALL=(ALL) NOPASSWD: ALL'
         priority: 30
 
 bootstrap::auth::groups:
@@ -28,22 +32,25 @@ bootstrap::auth::groups:
 
 bootstrap::auth::users:
     root:
-        password: %root_password_hash%
+        password: <%= root_password_hash %>
         uid: 0
         gid: 0
         home: /root
     kalman:
-        password: %user_password_hash%
+        password: <%= user_password_hash %>
         uid: 1000
         gid: 1000
-        groups: [admins, fuse]
+        groups:
+            - admins
+            - sudo
+            - fuse
         comment: Kalman Olah
         home: /home/kalman
         shell: /bin/zsh
 
 bootstrap::auth::ssh_authorized_keys:
     kalman@workbox:
-        key: %user_public_key%
+        key: <%= user_public_key %>
         type: ssh-rsa
         user: kalman
 

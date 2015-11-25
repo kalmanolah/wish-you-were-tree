@@ -22,3 +22,6 @@
 [submodule "modules/archive"]
 	path = modules/archive
 	url = https://github.com/camptocamp/puppet-archive.git
+[submodule "modules/timezone"]
+	path = modules/timezone
+	url = https://github.com/saz/puppet-timezone.git

@@ -1,0 +1,5 @@
+$config={
+    'user_password_hash' => '$9$pWHaSh',
+    'root_password_hash' => '$9$pWHaSh',
+    'user_public_key'    => 'AAAAAYOURPUBKEYHEREBBBBB',
+}
