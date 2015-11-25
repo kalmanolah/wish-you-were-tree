@@ -117,12 +117,13 @@ bootstrap::extras::vcsrepos:
 
 bootstrap::extras::archives:
     tmsu:
-        url: https://github.com/oniony/TMSU/releases/download/v0.5.2/tmsu-x86_64-0.5.2.tgz
+        url: https://github.com/oniony/TMSU/releases/download/v0.6.0/tmsu-x86_64-0.6.0.tgz
         src_target: /tmp
         follow_redirects: true
         checksum: false
         strip_components: 1
         target: /home/kalman/misc/tmsu
+        purge_target: true
         require: File[/home/kalman/misc]
 
 bootstrap::extras::files:
