@@ -84,8 +84,8 @@ bootstrap::extras::packages:
       - python-pip
       - numlockx
       - rxvt-unicode-256color
-      - ambiance-colors
-      - vivacious-colors
+      # - ambiance-colors
+      # - vivacious-colors
       # - blueproximity
     : {}
 
@@ -397,25 +397,18 @@ bootstrap::extras::execs:
         unless: test `dconf read /org/gnome/settings-daemon/plugins/cursor/active` = false
         user: kalman
         group: kalman
-
-    set_gtk_theme:
-        command: gsettings set org.gnome.desktop.interface gtk-theme Ambiance-Flat-Graphite-Pro
-        unless: test `gsettings get org.gnome.desktop.interface gtk-theme` = \'Ambiance-Flat-Graphite-Pro\'
-        user: kalman
-        group: kalman
-    set_icon_theme:
-        command: gsettings set org.gnome.desktop.interface icon-theme Vivacious-Colors-Full-Dark
-        unless: test `gsettings get org.gnome.desktop.interface icon-theme` = \'Vivacious-Colors-Full-Dark\'
-        user: kalman
-        group: kalman
+    # set_gtk_theme:
+    #     command: gsettings set org.gnome.desktop.interface gtk-theme Ambiance-Flat-Graphite-Pro
+    #     unless: test `gsettings get org.gnome.desktop.interface gtk-theme` = \'Ambiance-Flat-Graphite-Pro\'
+    #     user: kalman
+    #     group: kalman
+    # set_icon_theme:
+    #     command: gsettings set org.gnome.desktop.interface icon-theme Vivacious-Colors-Full-Dark
+    #     unless: test `gsettings get org.gnome.desktop.interface icon-theme` = \'Vivacious-Colors-Full-Dark\'
+    #     user: kalman
+    #     group: kalman
 
 bootstrap::extras::file_lines:
-<% ['pkcs11', 'ssh', 'secrets'].each do |value| %>
-    # gnome_keyring_<%= value %>_show_in:
-    #     path:  /etc/xdg/autostart/gnome-keyring-<%= value %>.desktop
-    #     match: ^OnlyShowIn=
-    #     line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
-<% end %>
     gnome_keyring_pkcs11_show_in:
         path:  /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
         match: ^OnlyShowIn=
@@ -428,4 +421,15 @@ bootstrap::extras::file_lines:
         path:  /etc/xdg/autostart/gnome-keyring-secrets.desktop
         match: ^OnlyShowIn=
         line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
-
+    gnome_keyring_gpg_show_in:
+        path:  /etc/xdg/autostart/gnome-keyring-gpg.desktop
+        match: ^OnlyShowIn=
+        line:  OnlyShowIn=GNOME;Unity;MATE;Awesome;
+    polkit_gnome_authentication_agent_1_show_in:
+        path:  /etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
+        match: ^OnlyShowIn=
+        line:  OnlyShowIn=GNOME;XFCE;Unity;Awesome;
+    gsettings_data_convert_show_in:
+        path:  /etc/xdg/autostart/gsettings-data-convert.desktop
+        match: ^OnlyShowIn=
+        line:  OnlyShowIn=GNOME;Unity;Awesome;

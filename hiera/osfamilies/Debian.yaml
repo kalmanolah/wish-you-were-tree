@@ -30,12 +30,12 @@ apt::sources:
         key_source: http://download.opensuse.org/repositories/home:moritzmolch:gencfsm/Debian_8.0/Release.key
         notify: Package[gnome-encfs-manager]
 
-    ravefinity-project:
-        location: http://ppa.launchpad.net/ravefinity-project/ppa/ubuntu
-        release: vivid
-        repos: main
-        include_src: false
-        key: E2D0EBE9
-        notify:
-            - Package[ambiance-colors]
-            - Package[vivacious-colors]
+    # ravefinity-project:
+    #     location: http://ppa.launchpad.net/ravefinity-project/ppa/ubuntu
+    #     release: vivid
+    #     repos: main
+    #     include_src: false
+    #     key: E2D0EBE9
+    #     notify:
+    #         - Package[ambiance-colors]
+    #         - Package[vivacious-colors]
