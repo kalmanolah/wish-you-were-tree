@@ -351,6 +351,12 @@ bootstrap::extras::files:
         target: /home/kalman/misc/misc-dotfiles/gtk3/gtk.css
         force: true
 
+    # Other
+    /home/kalman/Pictures/wallpapers:
+        ensure: link
+        target: /home/kalman/Dropbox/Pictures/wallpapers
+        force: true
+
 bootstrap::extras::mounts:
     /home/kalman/misc/nas/public-nfs:
         fstype: nfs
