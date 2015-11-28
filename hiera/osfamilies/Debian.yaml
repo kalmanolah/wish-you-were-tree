@@ -46,3 +46,13 @@ apt::sources:
     #     repos: main
     #     include_src: false
     #     key: C1289A29
+
+    eid:
+        location: http://files.eid.belgium.be/debian
+        release: jessie
+        repos: main
+        include_src: false
+        key: 6773D225
+        notify:
+            - Package[eid-viewer]
+            - Package[eid-mw]
