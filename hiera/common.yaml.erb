@@ -95,24 +95,39 @@ bootstrap::extras::packages:
 bootstrap::extras::vcsrepos:
     # My stuff
     /home/kalman/misc/awesome-config:
+        ensure: latest
+        user: kalman
         source: git://github.com/kalmanolah/awesome-config.git
     /home/kalman/misc/vim-config:
+        ensure: latest
+        user: kalman
         source: git://github.com/kalmanolah/vim-config.git
     /home/kalman/misc/misc-dotfiles:
+        ensure: latest
+        user: kalman
         source: git://github.com/kalmanolah/misc-dotfiles.git
+    /home/kalman/misc/puppet-tree:
+        user: kalman
+        source: git://github.com/kalmanolah/wish-you-were-tree.git
 
     # Third-party
     /home/kalman/misc/prezto:
+        user: kalman
         source: git://github.com/sorin-ionescu/prezto.git
     /home/kalman/misc/irssi-libnotify:
+        user: kalman
         source: https://code.google.com/p/irssi-libnotify
     /home/kalman/misc/urxvt-perls:
+        user: kalman
         source: git://github.com/muennich/urxvt-perls.git
     /home/kalman/misc/powerline-fonts:
+        user: kalman
         source: git://github.com/Lokaltog/powerline-fonts.git
     /home/kalman/misc/scripts.irssi.org:
+        user: kalman
         source: git://github.com/irssi/scripts.irssi.org.git
     /home/kalman/misc/fira-code:
+        user: kalman
         source: git://github.com/tonsky/FiraCode.git
 
 bootstrap::extras::archives:
