@@ -39,3 +39,10 @@ apt::sources:
     #     notify:
     #         - Package[ambiance-colors]
     #         - Package[vivacious-colors]
+
+    # ubuntuzilla:
+    #     location: http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt
+    #     release: all
+    #     repos: main
+    #     include_src: false
+    #     key: C1289A29

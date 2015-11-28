@@ -150,6 +150,7 @@ bootstrap::extras::files:
       - /home/kalman/misc/nas/multimedia
       - /home/kalman/misc/nas/public-nfs
       - /home/kalman/misc/tmsu-vfs
+      - /home/kalman/misc/firefox
       - /home/kalman/bin
       - /home/kalman/.cache
       - /home/kalman/.cache/awesome
@@ -430,6 +431,12 @@ bootstrap::extras::execs:
     #     unless: test `gsettings get org.gnome.desktop.interface icon-theme` = \'Vivacious-Colors-Full-Dark\'
     #     user: kalman
     #     group: kalman
+    download_firefox:
+        command: curl -L -o /tmp/firefox.tar.bz2 'https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US' && tar xjf /tmp/firefox.tar.bz2 -C /home/kalman/misc/firefox --strip-components=1
+        unless: test -x /home/kalman/misc/firefox/firefox
+        user: kalman
+        group: kalman
+        require: File[/home/kalman/misc/firefox]
 
 bootstrap::extras::file_lines:
     gnome_keyring_pkcs11_show_in:
