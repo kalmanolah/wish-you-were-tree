@@ -326,6 +326,8 @@ bootstrap::extras::files:
     /home/kalman/.profile:
         ensure: link
         target: /home/kalman/misc/misc-dotfiles/.profile
+        owner: kalman
+        group: kalman
 
     # fonts
     /home/kalman/.fonts/powerline-fonts:
