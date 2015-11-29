@@ -323,6 +323,9 @@ bootstrap::extras::files:
     /home/kalman/.Xdefaults:
         ensure: link
         target: /home/kalman/misc/misc-dotfiles/.Xdefaults
+    /home/kalman/.profile:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/.profile
 
     # fonts
     /home/kalman/.fonts/powerline-fonts:
