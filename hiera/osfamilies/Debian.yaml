@@ -56,3 +56,12 @@ apt::sources:
         notify:
             - Package[eid-viewer]
             - Package[eid-mw]
+
+    webupd8_sublime_text_3:
+        location: http://ppa.launchpad.net/webupd8team/sublime-text-3/ubuntu
+        release: vivid
+        repos: main
+        include_src: false
+        key: EEA14886
+        notify:
+            - Package[sublime-text-installer]

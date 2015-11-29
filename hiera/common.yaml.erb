@@ -87,6 +87,7 @@ bootstrap::extras::packages:
       - xbacklight
       - eid-viewer
       - eid-mw
+      - sublime-text-installer
       # - ambiance-colors
       # - vivacious-colors
       # - blueproximity
@@ -164,6 +165,8 @@ bootstrap::extras::files:
       - /home/kalman/.ncmpcpp
       - /home/kalman/.gnupg
       - /home/kalman/.config
+      - /home/kalman/.config/sublime-text-3
+      - /home/kalman/.config/sublime-text-3/Packages
       - /home/kalman/.ssh
       - /home/kalman/.mpd
       - /home/kalman/.fonts
@@ -367,6 +370,16 @@ bootstrap::extras::files:
     /home/kalman/.config/gtk-3.0/gtk.css:
         ensure: link
         target: /home/kalman/misc/misc-dotfiles/gtk3/gtk.css
+        force: true
+
+    # Sublime Text 3
+    /home/kalman/.config/sublime-text-3/Packages/User:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/sublime_text_3/Packages/User
+        force: true
+    /home/kalman/.config/sublime-text-3/Local/License.sublime_license:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/sublime_text_3/License.sublime_license
         force: true
 
     # Other
