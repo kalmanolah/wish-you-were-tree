@@ -65,3 +65,12 @@ apt::sources:
         key: EEA14886
         notify:
             - Package[sublime-text-installer]
+
+    spotify:
+        location: http://repository.spotify.com
+        release: testing
+        repos: non-free
+        key: 94558F59
+        include_src: false
+        notify:
+            - Package[spotify-client]
