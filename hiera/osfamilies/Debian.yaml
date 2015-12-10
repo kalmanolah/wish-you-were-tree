@@ -74,3 +74,12 @@ apt::sources:
         include_src: false
         notify:
             - Package[spotify-client]
+
+    google-talkplugin:
+        location: http://dl.google.com/linux/talkplugin/deb/
+        release: stable
+        repos: main
+        key: 7FAC5991
+        include_src: false
+        notify:
+            - Package[google-talkplugin]
