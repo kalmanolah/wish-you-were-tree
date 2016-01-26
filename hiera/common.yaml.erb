@@ -103,20 +103,17 @@ bootstrap::extras::packages:
 bootstrap::extras::vcsrepos:
     # My stuff
     /home/kalman/misc/awesome-config:
-        ensure: latest
         user: kalman
-        source: git://github.com/kalmanolah/awesome-config.git
+        source: ssh://git@github.com/kalmanolah/awesome-config.git
     /home/kalman/misc/vim-config:
-        ensure: latest
         user: kalman
-        source: git://github.com/kalmanolah/vim-config.git
+        source: ssh://git@github.com/kalmanolah/vim-config.git
     /home/kalman/misc/misc-dotfiles:
-        ensure: latest
         user: kalman
-        source: git://github.com/kalmanolah/misc-dotfiles.git
+        source: ssh://git@github.com/kalmanolah/misc-dotfiles.git
     /home/kalman/misc/puppet-tree:
         user: kalman
-        source: git://github.com/kalmanolah/wish-you-were-tree.git
+        source: ssh://git@github.com/kalmanolah/wish-you-were-tree.git
 
     # Third-party
     /home/kalman/misc/prezto:
