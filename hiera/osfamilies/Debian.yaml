@@ -22,7 +22,6 @@ apt::sources:
 #        release: stretch-backports
 #        repos: main contrib non-free
     gnome-encfs-manager:
-        location: http://download.opensuse.org/repositories/home:/moritzmolch:/gencfsm/Debian_8.0/
         location: http://ppa.launchpad.net/gencfsm/ppa/ubuntu
         release: vivid
         repos: main
@@ -31,6 +30,14 @@ apt::sources:
         # key: 6A0344470F68ADCA
         notify:
             - Package[gnome-encfs-manager]
+
+    # puppetlabs-pc1:
+    #     location: http://apt.puppetlabs.com
+    #     repos: PC1
+    #     key: 4BD6EC30
+    #     release: jessie
+    #     include_src: false
+    #     allow_unsigned: true
 
     # ravefinity-project:
     #     location: http://ppa.launchpad.net/ravefinity-project/ppa/ubuntu

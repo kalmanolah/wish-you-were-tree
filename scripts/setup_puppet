@@ -49,12 +49,15 @@ DISTRO=$(get_distro_name)
 
 case "$DISTRO" in
     "Red Hat")
-        rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
-        yum install -y puppet
+        rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+        yum install -y puppet-agent
         ;;
     "Debian")
+        wget https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
+        dpkg -i puppetlabs-release-pc1-jessie.deb
+        rm -f puppetlabs-release-pc1-jessie.deb
         apt-get update
-        apt-get install -y puppet
+        apt-get install -y puppet-agent
         ;;
     *)
         echo "ERROR: Distribution ${DISTRO} not supported" >&2 && exit 1
