@@ -7,4 +7,4 @@ fi
 
 DIR='/etc/puppet'
 ENVIRONMENT='production'
-puppet apply --environment=$ENVIRONMENT $DIR/environments/$ENVIRONMENT/manifests
+puppet apply --environment=$ENVIRONMENT $DIR/environments/$ENVIRONMENT/manifests $@

@@ -25,18 +25,21 @@ apt::sources:
         location: http://ppa.launchpad.net/gencfsm/ppa/ubuntu
         release: vivid
         repos: main
-        include_src: false
-        key: 0F68ADCA
-        # key: 6A0344470F68ADCA
+        include:
+            src: false
+        # key: 0F68ADCA
+        key: B684584331689DCE7C8FDF456A0344470F68ADCA
         notify:
             - Package[gnome-encfs-manager]
 
     # puppetlabs-pc1:
     #     location: http://apt.puppetlabs.com
     #     repos: PC1
-    #     key: 4BD6EC30
+    #     # key: 4BD6EC30
+    #     key: 47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30
     #     release: jessie
-    #     include_src: false
+    #     include:
+    #         src: false
     #     allow_unsigned: true
 
     # ravefinity-project:
@@ -60,8 +63,10 @@ apt::sources:
         location: http://files.eid.belgium.be/debian
         release: jessie
         repos: main
-        include_src: false
-        key: 6773D225
+        include:
+            src: false
+        # key: 6773D225
+        key:  B37D9040098C3DEEE00F6D08A35743EA6773D225
         notify:
             - Package[eid-viewer]
             - Package[eid-mw]
@@ -70,8 +75,10 @@ apt::sources:
         location: http://ppa.launchpad.net/webupd8team/sublime-text-3/ubuntu
         release: vivid
         repos: main
-        include_src: false
-        key: EEA14886
+        include:
+            src: false
+        # key: EEA14886
+        key: 7B2C3B0889BF5709A105D03AC2518248EEA14886
         notify:
             - Package[sublime-text-installer]
 
@@ -79,8 +86,10 @@ apt::sources:
         location: http://repository.spotify.com
         release: testing
         repos: non-free
-        key: 94558F59
-        include_src: false
+        # key: 94558F59
+        key: E22CBE98B5575C1857671254082CCEDF94558F59
+        include:
+            src: false
         notify:
             - Package[spotify-client]
 
@@ -88,7 +97,9 @@ apt::sources:
         location: http://dl.google.com/linux/talkplugin/deb/
         release: stable
         repos: main
-        key: 7FAC5991
-        include_src: false
+        # key: 7FAC5991
+        key: 4CCA1EAF950CEE4AB83976DCA040830F7FAC5991
+        include:
+            src: false
         notify:
             - Package[google-talkplugin]
