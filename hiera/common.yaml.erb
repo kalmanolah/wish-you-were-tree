@@ -134,6 +134,9 @@ bootstrap::extras::vcsrepos:
     /home/kalman/misc/fira-code:
         user: kalman
         source: git://github.com/tonsky/FiraCode.git
+    /home/kalman/misc/sshuttle:
+        user: kalman
+        source: git://github.com/vStone/sshuttle.git
 
 bootstrap::extras::archives:
     tmsu:
@@ -385,16 +388,21 @@ bootstrap::extras::files:
         target: /home/kalman/misc/misc-dotfiles/sublime_text_3/Packages/User
         force: true
 
+    # Private bin
+    /home/kalman/bin/secure:
+        ensure: link
+        target: /home/kalman/Encfs/Secure/bin
+        force: true
+
     # Other
     /home/kalman/Pictures/wallpapers:
         ensure: link
         target: /home/kalman/Dropbox/Pictures/wallpapers
         force: true
 
-    # Private bin
-    /home/kalman/bin/secure:
+    /home/kalman/bin/sshuttle:
         ensure: link
-        target: /home/kalman/Encfs/Secure/bin
+        target: /home/kalman/misc/sshuttle/sshuttle
         force: true
 
 bootstrap::extras::mounts:
