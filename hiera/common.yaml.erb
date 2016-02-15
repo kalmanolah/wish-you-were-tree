@@ -92,6 +92,10 @@ bootstrap::extras::packages:
       - tig
       - spotify-client
       - google-talkplugin
+      - iotop
+      - dcfldd
+      - pv
+      - dialog
       # - ambiance-colors
       # - vivacious-colors
       # - blueproximity
@@ -388,10 +392,14 @@ bootstrap::extras::files:
         target: /home/kalman/misc/misc-dotfiles/sublime_text_3/Packages/User
         force: true
 
-    # Private bin
+    # Bin
     /home/kalman/bin/secure:
         ensure: link
         target: /home/kalman/Encfs/Secure/bin
+        force: true
+    /home/kalman/bin/misc:
+        ensure: link
+        target: /home/kalman/misc/misc-dotfiles/bin
         force: true
 
     # Other
