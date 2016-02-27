@@ -96,6 +96,7 @@ bootstrap::extras::packages:
       - dcfldd
       - pv
       - dialog
+      - jq
       # - ambiance-colors
       # - vivacious-colors
       # - blueproximity
@@ -141,6 +142,11 @@ bootstrap::extras::vcsrepos:
     /home/kalman/misc/sshuttle:
         user: kalman
         source: git://github.com/vStone/sshuttle.git
+    /home/kalman/misc/hosts:
+        ensure: latest
+        user: kalman
+        source: git://github.com/StevenBlack/hosts.git
+        revision: master
 
 bootstrap::extras::archives:
     tmsu:
@@ -500,3 +506,20 @@ bootstrap::extras::file_lines:
         path:  /etc/xdg/autostart/gsettings-data-convert.desktop
         match: ^OnlyShowIn=
         line:  OnlyShowIn=GNOME;Unity;Awesome;
+
+bootstrap::extras::concats:
+    /etc/hosts:
+        owner: root
+        group: root
+        mode: '0644'
+        ensure_newline: true
+
+bootstrap::extras::concat_fragments:
+    hosts_local:
+        target: /etc/hosts
+        source: /home/kalman/Encfs/Secure/hosts/hosts
+        order: 10
+    hosts_blocked:
+        target: /etc/hosts
+        source: /home/kalman/misc/hosts/hosts
+        order: 30

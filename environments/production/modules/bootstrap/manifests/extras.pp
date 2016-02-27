@@ -1,13 +1,15 @@
 # Class for bootstrapping extra stuff
 class bootstrap::extras (
-  $files      = {},
-  $file_lines = {},
-  $augeas     = {},
-  $vcsrepos   = {},
-  $packages   = {},
-  $mounts     = {},
-  $execs      = {},
-  $archives   = {}
+  $files            = {},
+  $file_lines       = {},
+  $augeas           = {},
+  $vcsrepos         = {},
+  $packages         = {},
+  $mounts           = {},
+  $execs            = {},
+  $archives         = {},
+  $concats          = {},
+  $concat_fragments = {},
 ) {
   $file_defaults = {
     ensure => 'present',
@@ -40,6 +42,9 @@ class bootstrap::extras (
     ensure => 'present',
   }
 
+  $concat_defaults = {}
+  $concat_fragment_defaults = {}
+
   create_resources(file, $files, $file_defaults)
   create_resources(file_line, $file_lines, $file_line_defaults)
   create_resources(augeas, $augeas, $augeas_defaults)
@@ -48,4 +53,6 @@ class bootstrap::extras (
   create_resources(mount, $mounts, $mount_defaults)
   create_resources(exec, $execs, $exec_defaults)
   create_resources(archive, $archives, $archive_defaults)
+  create_resources(concat, $concats, $concat_defaults)
+  create_resources(concat::fragment, $concat_fragments, $concat_fragment_defaults)
 }

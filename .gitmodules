@@ -22,3 +22,6 @@
 [submodule "modules/timezone"]
 	path = modules/timezone
 	url = https://github.com/saz/puppet-timezone.git
+[submodule "modules/concat"]
+	path = modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat.git
