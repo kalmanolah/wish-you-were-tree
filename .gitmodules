@@ -10,9 +10,6 @@
 [submodule "modules/sudo"]
 	path = modules/sudo
 	url = https://github.com/saz/puppet-sudo.git
-[submodule "modules/concat_native"]
-	path = modules/concat_native
-	url = https://github.com/theforeman/puppet-concat.git
 [submodule "modules/vcsrepo"]
 	path = modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git

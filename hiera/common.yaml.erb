@@ -523,3 +523,4 @@ bootstrap::extras::concat_fragments:
         target: /etc/hosts
         source: /home/kalman/misc/hosts/hosts
         order: 30
+        require: Vcsrepo[/home/kalman/misc/hosts]
