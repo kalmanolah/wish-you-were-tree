@@ -97,6 +97,7 @@ bootstrap::extras::packages:
       - pv
       - dialog
       - jq
+      - redshift-gtk
       # - ambiance-colors
       # - vivacious-colors
       # - blueproximity
@@ -407,16 +408,20 @@ bootstrap::extras::files:
         ensure: link
         target: /home/kalman/misc/misc-dotfiles/bin
         force: true
+    /home/kalman/bin/sshuttle:
+        ensure: link
+        target: /home/kalman/misc/sshuttle/sshuttle
+        force: true
+
+    # Redshift
+    /home/kalman/.config/autostart/redshift-gtk.desktop:
+        source: /usr/share/applications/redshift-gtk.desktop
+        require: Package[redshift-gtk]
 
     # Other
     /home/kalman/Pictures/wallpapers:
         ensure: link
         target: /home/kalman/Dropbox/Pictures/wallpapers
-        force: true
-
-    /home/kalman/bin/sshuttle:
-        ensure: link
-        target: /home/kalman/misc/sshuttle/sshuttle
         force: true
 
 bootstrap::extras::mounts:
@@ -461,6 +466,12 @@ bootstrap::extras::augeas:
     set_fuse_conf:
         context: /files/etc/fuse.conf
         changes: clear user_allow_other
+    set_redshift_gtk_autostart:
+        context: /files/home/kalman/.config/autostart/redshift-gtk.desktop
+        lens: Desktop.lns
+        incl: /home/kalman/.config/autostart/redshift-gtk.desktop
+        changes: set Desktop\ Entry/X-GNOME-Autostart-enabled true
+        require: File[/home/kalman/.config/autostart/redshift-gtk.desktop]
 
 bootstrap::extras::execs:
     disable_gnome_cursor_plugin:
