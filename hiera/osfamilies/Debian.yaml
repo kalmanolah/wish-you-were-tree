@@ -4,9 +4,17 @@ classes:
 apt::purge_sources_list: true
 apt::always_apt_update: true
 
+apt::settings:
+    conf-ipv4_only:
+        priority: 99
+        content: 'Acquire::ForceIPv4 "true";'
+    conf-progress_bar:
+        priority: 99
+        content: 'Dpkg::Progress-Fancy "1";'
+
 apt::sources:
     debian-default:
-        location: http://ftp.belnet.be/debian/
+        location: http://ftp.be.debian.org/debian/
         release: stretch
         repos: main contrib non-free
     debian-updates:
@@ -14,7 +22,7 @@ apt::sources:
         release: stretch/updates
         repos: main contrib non-free
     debian-updates:
-        location: http://ftp.belnet.be/debian/
+        location: http://ftp.be.debian.org/debian/
         release: stretch-updates
         repos: main contrib non-free
 #    debian-backports:
