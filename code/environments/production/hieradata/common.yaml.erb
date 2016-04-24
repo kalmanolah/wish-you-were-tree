@@ -471,6 +471,7 @@ bootstrap::extras::augeas:
         lens: Desktop.lns
         incl: /home/kalman/.config/autostart/redshift-gtk.desktop
         changes: set Desktop\ Entry/X-GNOME-Autostart-enabled true
+        onlyif: get Desktop\ Entry/X-GNOME-Autostart-enabled != true
         require: File[/home/kalman/.config/autostart/redshift-gtk.desktop]
 
 bootstrap::extras::execs:

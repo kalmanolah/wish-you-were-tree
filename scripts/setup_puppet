@@ -64,5 +64,8 @@ case "$DISTRO" in
         ;;
 esac
 
-rm -rf /etc/puppet
-ln -s "$DIR" /etc/puppet
+rm -rf /etc/puppetlabs/code
+ln -s "${DIR}/code" /etc/puppetlabs/code
+
+rm -rf /etc/puppetlabs/puppet
+ln -s "${DIR}/code" /etc/puppetlabs/puppet

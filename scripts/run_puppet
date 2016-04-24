@@ -5,6 +5,6 @@ if [ "$EUID" -ne 0 ]
     exit 1
 fi
 
-DIR='/etc/puppet'
+DIR='/etc/puppetlabs/code'
 ENVIRONMENT='production'
-puppet apply --environment=$ENVIRONMENT $DIR/environments/$ENVIRONMENT/manifests $@
+/opt/puppetlabs/bin/puppet apply --environment=$ENVIRONMENT $DIR/environments/$ENVIRONMENT/manifests $@

@@ -1,2 +1,2 @@
-hiera/common.yaml
+**/hieradata/common.yaml
 scripts/config.rb

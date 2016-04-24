@@ -29,6 +29,7 @@ apt::sources:
 #        location: http://ftp.belnet.be/debian/
 #        release: stretch-backports
 #        repos: main contrib non-free
+
     gnome-encfs-manager:
         location: http://ppa.launchpad.net/gencfsm/ppa/ubuntu
         release: vivid
@@ -40,15 +41,15 @@ apt::sources:
         notify:
             - Package[gnome-encfs-manager]
 
-    # puppetlabs-pc1:
-    #     location: http://apt.puppetlabs.com
-    #     repos: PC1
-    #     # key: 4BD6EC30
-    #     key: 47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30
-    #     release: jessie
-    #     include:
-    #         src: false
-    #     allow_unsigned: true
+    puppetlabs-pc1:
+        location: http://apt.puppetlabs.com
+        repos: PC1
+        # key: 4BD6EC30
+        key: 47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30
+        release: jessie
+        include:
+            src: false
+        allow_unsigned: true
 
     # ravefinity-project:
     #     location: http://ppa.launchpad.net/ravefinity-project/ppa/ubuntu

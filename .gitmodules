@@ -1,24 +1,24 @@
-[submodule "modules/apt"]
-	path = modules/apt
+[submodule "code/modules/apt"]
+	path = code/modules/apt
 	url = https://github.com/puppetlabs/puppetlabs-apt.git
-[submodule "modules/stdlib"]
-	path = modules/stdlib
+[submodule "code/modules/stdlib"]
+	path = code/modules/stdlib
 	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
-[submodule "modules/locales"]
-	path = modules/locales
+[submodule "code/modules/locales"]
+	path = code/modules/locales
 	url = https://github.com/saz/puppet-locales.git
-[submodule "modules/sudo"]
-	path = modules/sudo
+[submodule "code/modules/sudo"]
+	path = code/modules/sudo
 	url = https://github.com/saz/puppet-sudo.git
-[submodule "modules/vcsrepo"]
-	path = modules/vcsrepo
+[submodule "code/modules/vcsrepo"]
+	path = code/modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
-[submodule "modules/archive"]
-	path = modules/archive
+[submodule "code/modules/archive"]
+	path = code/modules/archive
 	url = https://github.com/camptocamp/puppet-archive.git
-[submodule "modules/timezone"]
-	path = modules/timezone
+[submodule "code/modules/timezone"]
+	path = code/modules/timezone
 	url = https://github.com/saz/puppet-timezone.git
-[submodule "modules/concat"]
-	path = modules/concat
+[submodule "code/modules/concat"]
+	path = code/modules/concat
 	url = https://github.com/puppetlabs/puppetlabs-concat.git
