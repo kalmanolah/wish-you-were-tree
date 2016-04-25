@@ -41,21 +41,41 @@ function get_distro_name {
     fi
     [[ "${n:-}" = '' ]] && echo "ERROR: Could not determine the distro name" >&2 && exit 1
 
-    echo $n
+    echo "$n"
 } # get_distro_name
 
+function get_distro_version () {
+    case "$1" in
+        "Debian")
+            n=$(cut -d / -f 1 < /etc/debian_version)
+            ;;
+        *)
+            n=$(lsb_release -cs)
+            ;;
+    esac
+    [[ "${n:-}" = '' ]] && echo "ERROR: Could not determine the distro version" >&2 && exit 1
 
-DISTRO=$(get_distro_name)
+    echo "$n"
+} # get_distro_version
 
-case "$DISTRO" in
+DISTRO_NAME=$(get_distro_name)
+DISTRO_VERSION=$(get_distro_version "${DISTRO_NAME}")
+
+case "$DISTRO_NAME" in
     "Red Hat")
         rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
         yum install -y puppet-agent
         ;;
-    "Debian")
-        wget https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
-        dpkg -i puppetlabs-release-pc1-jessie.deb
-        rm -f puppetlabs-release-pc1-jessie.deb
+    "Debian" | "Ubuntu")
+        # Puppetlabs doesn't provide packages for stretch ;_;
+        if [ "${DISTRO_VERSION}" == 'stretch' ]
+        then
+            DISTRO_VERSION='jessie'
+        fi
+
+        wget "https://apt.puppetlabs.com/puppetlabs-release-pc1-${DISTRO_VERSION}.deb"
+        dpkg -i "puppetlabs-release-pc1-${DISTRO_VERSION}.deb"
+        rm -f "puppetlabs-release-pc1-${DISTRO_VERSION}.deb"
         apt-get update
         apt-get install -y puppet-agent
         ;;
