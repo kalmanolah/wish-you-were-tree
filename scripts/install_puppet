@@ -1,0 +1,84 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+    then echo "You need to be root to run this script."
+    exit 1
+fi
+
+function get_distro_name {
+    if [[ -r '/etc/lsb-release' ]]; then
+        . /etc/lsb-release
+        [[ "$DISTRIB_ID" ]] && n="$DISTRIB_ID"
+    elif [[ -r '/etc/release' ]]; then
+        n="head -1 /etc/release | sed 's/ *\([[^0-9]]*\) [0-9].*/\1/'"
+    elif [[ -r '/etc/arch-release' ]]; then
+        n="Arch Linux"
+    elif [[ -r '/etc/debian_version' ]]; then
+        n='Debian'
+    elif [[ -r '/etc/gentoo-release' ]]; then
+        n='Gentoo'
+    elif [[ -r '/etc/knoppix-version' ]]; then
+        n='Knoppix'
+    elif [[ -r '/etc/mandrake-release' ]]; then
+        n='Mandrake'
+    elif [[ -r '/etc/pardus-release' ]]; then
+        n='Pardus'
+    elif [[ -r '/etc/puppyversion' ]]; then
+        n='Puppy Linux'
+    elif [[ -r '/etc/redhat-release' ]]; then
+        n='Red Hat'
+    elif [[ -r '/etc/sabayon-release' ]]; then
+        n='Sabayon'
+    elif [[ -r '/etc/slackware-version' ]]; then
+        n='Slackware'
+    elif [[ -r '/etc/SuSE-release' ]]; then
+        n='SuSE'
+    elif [[ -r '/etc/xandros-desktop-version' ]]; then
+        n='Xandros'
+    elif [[ -r '/etc/zenwalk-version' ]]; then
+        n="Zenwalk"
+    fi
+    [[ "${n:-}" = '' ]] && echo "ERROR: Could not determine the distro name" >&2 && exit 1
+
+    echo "$n"
+} # get_distro_name
+
+function get_distro_version () {
+    case "$1" in
+        "Debian")
+            n=$(cut -d / -f 1 < /etc/debian_version)
+            ;;
+        *)
+            n=$(lsb_release -cs)
+            ;;
+    esac
+    [[ "${n:-}" = '' ]] && echo "ERROR: Could not determine the distro version" >&2 && exit 1
+
+    echo "$n"
+} # get_distro_version
+
+DISTRO_NAME=$(get_distro_name)
+DISTRO_VERSION=$(get_distro_version "${DISTRO_NAME}")
+
+case "$DISTRO_NAME" in
+    "Red Hat")
+        rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+        yum install -y puppet-agent
+        ;;
+    "Debian" | "Ubuntu")
+        # Puppetlabs doesn't provide packages for stretch ;_;
+        if [ "${DISTRO_VERSION}" == 'stretch' ]
+        then
+            DISTRO_VERSION='jessie'
+        fi
+
+        wget "https://apt.puppetlabs.com/puppetlabs-release-pc1-${DISTRO_VERSION}.deb"
+        dpkg -i "puppetlabs-release-pc1-${DISTRO_VERSION}.deb"
+        rm -f "puppetlabs-release-pc1-${DISTRO_VERSION}.deb"
+        apt-get update
+        apt-get install -y puppet-agent
+        ;;
+    *)
+        echo "ERROR: Distribution ${DISTRO} not supported" >&2 && exit 1
+        ;;
+esac
