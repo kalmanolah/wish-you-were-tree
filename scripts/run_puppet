@@ -7,4 +7,6 @@ fi
 
 DIR='/etc/puppetlabs/code'
 ENVIRONMENT='production'
-/opt/puppetlabs/bin/puppet apply --environment=$ENVIRONMENT $DIR/environments/$ENVIRONMENT/manifests "$@"
+PUPPETBIN=$(which puppet || echo '/opt/puppetlabs/bin/puppet')
+
+${PUPPETBIN} apply --environment=$ENVIRONMENT $DIR/environments/$ENVIRONMENT/manifests "$@"
