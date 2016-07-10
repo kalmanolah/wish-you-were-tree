@@ -103,8 +103,11 @@ bootstrap::extras::packages:
       # - blueproximity
     : {}
 
-    # speedtest-cli:
-    #    provider: pip
+    sshuttle:
+        provider: pip
+
+    speedtest-cli:
+        provider: pip
 
 bootstrap::extras::vcsrepos:
     # My stuff
@@ -140,9 +143,6 @@ bootstrap::extras::vcsrepos:
     /home/kalman/misc/fira-code:
         user: kalman
         source: git://github.com/tonsky/FiraCode.git
-    /home/kalman/misc/sshuttle:
-        user: kalman
-        source: git://github.com/vStone/sshuttle.git
     /home/kalman/misc/hosts:
         ensure: latest
         user: kalman
@@ -407,10 +407,6 @@ bootstrap::extras::files:
     /home/kalman/bin/misc:
         ensure: link
         target: /home/kalman/misc/misc-dotfiles/bin
-        force: true
-    /home/kalman/bin/sshuttle:
-        ensure: link
-        target: /home/kalman/misc/sshuttle/sshuttle
         force: true
 
     # Redshift
