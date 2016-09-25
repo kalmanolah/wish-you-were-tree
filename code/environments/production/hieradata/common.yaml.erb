@@ -103,10 +103,10 @@ bootstrap::extras::packages:
       # - blueproximity
     : {}
 
-    sshuttle:
-        provider: pip
-
-    speedtest-cli:
+    ? - sshuttle
+      - speedtest-cli
+      - httpstat
+    :
         provider: pip
 
 bootstrap::extras::vcsrepos:
@@ -149,16 +149,16 @@ bootstrap::extras::vcsrepos:
         source: git://github.com/StevenBlack/hosts.git
         revision: master
 
-bootstrap::extras::archives:
-    tmsu:
-        url: https://github.com/oniony/TMSU/releases/download/v0.6.0/tmsu-x86_64-0.6.0.tgz
-        src_target: /tmp
-        follow_redirects: true
-        checksum: false
-        strip_components: 1
-        target: /home/kalman/misc/tmsu
-        purge_target: true
-        require: File[/home/kalman/misc]
+bootstrap::extras::archives: {}
+    # tmsu:
+    #     url: https://github.com/oniony/TMSU/releases/download/v0.6.0/tmsu-x86_64-0.6.0.tgz
+    #     src_target: /tmp
+    #     follow_redirects: true
+    #     checksum: false
+    #     strip_components: 1
+    #     target: /home/kalman/misc/tmsu
+    #     purge_target: true
+    #     require: File[/home/kalman/misc]
 
 bootstrap::extras::files:
     ? - /home/kalman
@@ -168,7 +168,7 @@ bootstrap::extras::files:
       - /home/kalman/misc/nas/download
       - /home/kalman/misc/nas/multimedia
       - /home/kalman/misc/nas/public-nfs
-      - /home/kalman/misc/tmsu-vfs
+      # - /home/kalman/misc/tmsu-vfs
       - /home/kalman/misc/firefox
       - /home/kalman/bin
       - /home/kalman/.cache
@@ -365,16 +365,16 @@ bootstrap::extras::files:
         source: /home/kalman/Encfs/Secure/nas/.mynascredentials_admin
         force: true
 
-    # tmsu
-    /usr/bin/tmsu:
-        ensure: link
-        target: /home/kalman/misc/tmsu/bin/tmsu
-        force: true
+    # # tmsu
+    # /usr/bin/tmsu:
+    #     ensure: link
+    #     target: /home/kalman/misc/tmsu/bin/tmsu
+    #     force: true
 
-    /sbin/mount.tmsu:
-        ensure: link
-        target: /home/kalman/misc/tmsu/bin/mount.tmsu
-        force: true
+    # /sbin/mount.tmsu:
+    #     ensure: link
+    #     target: /home/kalman/misc/tmsu/bin/mount.tmsu
+    #     force: true
 
     # Logitech K810 bluetooth keyboard
     /opt/logitech-k810:
@@ -413,6 +413,7 @@ bootstrap::extras::files:
     /home/kalman/.config/autostart/redshift-gtk.desktop:
         source: /usr/share/applications/redshift-gtk.desktop
         require: Package[redshift-gtk]
+        replace: false
 
     # Other
     /home/kalman/Pictures/wallpapers:
@@ -453,10 +454,10 @@ bootstrap::extras::mounts:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials_medea]
 
-    /home/kalman/misc/tmsu-vfs:
-        fstype: tmsu
-        device: /home/kalman/.tmsu/default.db
-        options: user,noauto
+    # /home/kalman/misc/tmsu-vfs:
+    #     fstype: tmsu
+    #     device: /home/kalman/.tmsu/default.db
+    #     options: user,noauto
 
 bootstrap::extras::augeas:
     set_fuse_conf:
