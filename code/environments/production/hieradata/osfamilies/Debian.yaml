@@ -91,6 +91,17 @@ apt::sources:
         notify:
             - Package[sublime-text-installer]
 
+    webupd8_atom:
+        location: http://ppa.launchpad.net/webupd8team/atom/ubuntu
+        release: vivid
+        repos: main
+        include:
+            src: false
+        # key: EEA14886
+        key: 7B2C3B0889BF5709A105D03AC2518248EEA14886
+        notify:
+            - Package[atom]
+
     spotify:
         location: http://repository.spotify.com
         release: testing
