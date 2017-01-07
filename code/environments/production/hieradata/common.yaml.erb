@@ -4,6 +4,7 @@ classes:
     - sudo
     - sudo::configs
     - timezone
+    - profile_firewall
 
 locales::locales:
     - en_US.UTF-8 UTF-8
@@ -86,7 +87,7 @@ bootstrap::extras::packages:
       - xbacklight
       - eid-viewer
       - eid-mw
-      - sublime-text-installer
+      # - sublime-text-installer
       - xsel
       - disper
       - tig
@@ -190,9 +191,9 @@ bootstrap::extras::files:
       - /home/kalman/.ncmpcpp
       - /home/kalman/.gnupg
       - /home/kalman/.config
-      - /home/kalman/.config/sublime-text-3
-      - /home/kalman/.config/sublime-text-3/Local
-      - /home/kalman/.config/sublime-text-3/Packages
+      # - /home/kalman/.config/sublime-text-3
+      # - /home/kalman/.config/sublime-text-3/Local
+      # - /home/kalman/.config/sublime-text-3/Packages
       - /home/kalman/.ssh
       - /home/kalman/.mpd
       - /home/kalman/.fonts
@@ -405,11 +406,11 @@ bootstrap::extras::files:
         target: /home/kalman/misc/misc-dotfiles/gtk3/gtk.css
         force: true
 
-    # Sublime Text 3
-    /home/kalman/.config/sublime-text-3/Packages/User:
-        ensure: link
-        target: /home/kalman/misc/misc-dotfiles/sublime_text_3/Packages/User
-        force: true
+    # # Sublime Text 3
+    # /home/kalman/.config/sublime-text-3/Packages/User:
+    #     ensure: link
+    #     target: /home/kalman/misc/misc-dotfiles/sublime_text_3/Packages/User
+    #     force: true
 
     # Bin
     /home/kalman/bin/secure:
@@ -545,3 +546,9 @@ bootstrap::extras::concat_fragments:
         source: /home/kalman/misc/hosts/hosts
         order: 30
         require: Vcsrepo[/home/kalman/misc/hosts]
+
+bootstrap::extras::services:
+    ssh:
+        ensure: stopped
+        enable: false
+        provider: systemd

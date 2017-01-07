@@ -22,3 +22,6 @@
 [submodule "code/modules/vcsrepo"]
 	path = code/modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
+[submodule "code/modules/firewall"]
+	path = code/modules/firewall
+	url = https://github.com/puppetlabs/puppetlabs-firewall.git
