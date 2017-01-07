@@ -108,6 +108,7 @@ bootstrap::extras::packages:
       # - ambiance-colors
       # - vivacious-colors
       # - blueproximity
+      - qbittorrent
     : {}
 
     ? - sshuttle
@@ -552,3 +553,14 @@ bootstrap::extras::services:
         ensure: stopped
         enable: false
         provider: systemd
+
+profile_firewall::firewall_rules:
+    '010 allow port 6881 access to qbittorrent (IPv4)':
+        dport:    6881
+        proto:    tcp
+        action:   accept
+    '010 allow port 6881 access to qbittorrent (IPv6)':
+        dport:    6881
+        proto:    tcp
+        action:   accept
+        provider: ip6tables
