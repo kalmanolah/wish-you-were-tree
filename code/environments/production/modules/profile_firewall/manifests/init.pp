@@ -8,7 +8,7 @@ class profile_firewall (
     $firewall_defaults = {}
     $firewallchain_defaults = {}
 
-    create_resources(firewall, $firewalls, $firewall_defaults)
+    create_resources(profile_firewall::rule, $firewalls, $firewall_defaults)
     create_resources(firewallchain, $firewallchains, $firewallchain_defaults)
 
     Firewall {

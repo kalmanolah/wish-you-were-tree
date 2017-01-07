@@ -555,12 +555,8 @@ bootstrap::extras::services:
         provider: systemd
 
 profile_firewall::firewall_rules:
-    '010 allow port 6881 access to qbittorrent (IPv4)':
-        dport:    6881
-        proto:    tcp
-        action:   accept
-    '010 allow port 6881 access to qbittorrent (IPv6)':
-        dport:    6881
-        proto:    tcp
-        action:   accept
-        provider: ip6tables
+    '150 allow port 6881 access to qbittorrent':
+        parameters:
+            dport:  6881
+            proto:  tcp
+            action: accept
