@@ -68,6 +68,14 @@ apt::sources:
     #     include_src: false
     #     key: C1289A29
 
+    sury_php:
+        location: https://packages.sury.org/php/
+        release: stretch
+        repos: main
+        include:
+            src: false
+        key: DF3D585DB8F0EB658690A554AC0E47584A7A714D
+
     eid:
         location: http://files.eid.belgium.be/debian
         release: jessie
@@ -123,3 +131,8 @@ apt::sources:
             src: false
         notify:
             - Package[google-talkplugin]
+
+
+bootstrap::extras::packages:
+    ? - apt-transport-https
+    : {}
