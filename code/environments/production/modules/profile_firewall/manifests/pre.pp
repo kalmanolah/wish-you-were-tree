@@ -27,6 +27,11 @@ class profile_firewall::pre {
         iniface => 'lo',
         action  => 'accept',
     }->
+    firewall { '001 accept all to vboxnet0 interface (IPv4)':
+        proto   => 'all',
+        iniface => 'vboxnet0',
+        action  => 'accept',
+    }->
     firewall { '002 reject local traffic not on loopback interface (IPv4)':
         iniface     => '! lo',
         proto       => 'all',

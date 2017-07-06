@@ -78,7 +78,7 @@ apt::sources:
 
     eid:
         location: http://files.eid.belgium.be/debian
-        release: jessie
+        release: stretch
         repos: main
         include:
             src: false
