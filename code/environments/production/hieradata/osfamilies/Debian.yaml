@@ -15,19 +15,19 @@ apt::settings:
 apt::sources:
     debian-default:
         location: http://ftp.be.debian.org/debian/
-        release: stretch
+        release: buster
         repos: main contrib non-free
     debian-updates:
         location: http://security.debian.org/
-        release: stretch/updates
+        release: buster/updates
         repos: main contrib non-free
     debian-updates:
         location: http://ftp.be.debian.org/debian/
-        release: stretch-updates
+        release: buster-updates
         repos: main contrib non-free
 #    debian-backports:
 #        location: http://ftp.belnet.be/debian/
-#        release: stretch-backports
+#        release: buster-backports
 #        repos: main contrib non-free
 
     gnome-encfs-manager:
@@ -44,8 +44,7 @@ apt::sources:
     puppetlabs-pc1:
         location: http://apt.puppetlabs.com
         repos: PC1
-        # key: 4BD6EC30
-        key: 47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30
+        key: 6F6B15509CF8E59E6E469F327F438280EF8D349F
         release: jessie
         include:
             src: false
@@ -70,7 +69,7 @@ apt::sources:
 
     sury_php:
         location: https://packages.sury.org/php/
-        release: stretch
+        release: jessie
         repos: main
         include:
             src: false
@@ -78,7 +77,7 @@ apt::sources:
 
     eid:
         location: http://files.eid.belgium.be/debian
-        release: stretch
+        release: jessie
         repos: main
         include:
             src: false
@@ -87,17 +86,6 @@ apt::sources:
         notify:
             - Package[eid-viewer]
             - Package[eid-mw]
-
-    # webupd8_sublime_text_3:
-    #     location: http://ppa.launchpad.net/webupd8team/sublime-text-3/ubuntu
-    #     release: vivid
-    #     repos: main
-    #     include:
-    #         src: false
-    #     # key: EEA14886
-    #     key: 7B2C3B0889BF5709A105D03AC2518248EEA14886
-    #     notify:
-    #         - Package[sublime-text-installer]
 
     webupd8_atom:
         location: http://ppa.launchpad.net/webupd8team/atom/ubuntu

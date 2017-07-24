@@ -16,6 +16,11 @@ class profile_firewall (
         require => Class['profile_firewall::pre'],
     }
 
+    Profile_firewall::Rule {
+        before  => Class['profile_firewall::post'],
+        require => Class['profile_firewall::pre'],
+    }
+
     class { ['profile_firewall::pre', 'profile_firewall::post']: }
     class { 'firewall': }
 

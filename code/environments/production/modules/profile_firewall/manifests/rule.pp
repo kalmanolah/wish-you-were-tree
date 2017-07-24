@@ -6,7 +6,7 @@ define profile_firewall::rule (
 ) {
   if $ipv4 {
     create_resources(firewall, {
-       "${name} (IPv4)" => $parameters,
+      "${name} (IPv4)" => $parameters,
     })
   }
 
