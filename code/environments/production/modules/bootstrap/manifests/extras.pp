@@ -1,18 +1,18 @@
 # Class for bootstrapping extra stuff
 class bootstrap::extras (
 ) {
-  $files = hiera_hash('bootstrap::extras::files', {})
-  $file_lines = hiera_hash('bootstrap::extras::file_lines', {})
-  $augeas = hiera_hash('bootstrap::extras::augeas', {})
-  $vcsrepos = hiera_hash('bootstrap::extras::vcsrepos', {})
-  $packages = hiera_hash('bootstrap::extras::packages', {})
-  $mounts = hiera_hash('bootstrap::extras::mounts', {})
-  $execs = hiera_hash('bootstrap::extras::execs', {})
-  $archives = hiera_hash('bootstrap::extras::archives', {})
-  $concats = hiera_hash('bootstrap::extras::concats', {})
-  $concat_fragments = hiera_hash('bootstrap::extras::concat_fragments', {})
-  $cronjobs = hiera_hash('bootstrap::extras::cronjobs', {})
-  $services = hiera_hash('bootstrap::extras::services', {})
+  $files = lookup('bootstrap::extras::files', {merge => hash})
+  $file_lines = lookup('bootstrap::extras::file_lines', {merge => hash})
+  $augeas = lookup('bootstrap::extras::augeas', {merge => hash})
+  $vcsrepos = lookup('bootstrap::extras::vcsrepos', {merge => hash})
+  $packages = lookup('bootstrap::extras::packages', {merge => hash})
+  $mounts = lookup('bootstrap::extras::mounts', {merge => hash})
+  $execs = lookup('bootstrap::extras::execs', {merge => hash})
+  $archives = lookup('bootstrap::extras::archives', {merge => hash})
+  $concats = lookup('bootstrap::extras::concats', {merge => hash})
+  $concat_fragments = lookup('bootstrap::extras::concat_fragments', {merge => hash})
+  $cronjobs = lookup('bootstrap::extras::cronjobs', {merge => hash})
+  $services = lookup('bootstrap::extras::services', {merge => hash})
 
   $file_defaults = {
     ensure => 'present',

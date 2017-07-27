@@ -122,5 +122,4 @@ apt::sources:
 
 
 bootstrap::extras::packages:
-    ? - apt-transport-https
-    : {}
+    apt-transport-https: {}

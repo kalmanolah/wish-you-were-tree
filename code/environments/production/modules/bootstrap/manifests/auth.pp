@@ -1,9 +1,9 @@
 # Class for bootstrapping auth stuff
 class bootstrap::auth (
 ) {
-  $users = hiera_hash('bootstrap::auth::users', {})
-  $ssh_authorized_keys = hiera_hash('bootstrap::auth::ssh_authorized_keys', {})
-  $groups = hiera_hash('bootstrap::auth::groups', {})
+  $users = lookup('bootstrap::auth::users', {merge => hash})
+  $ssh_authorized_keys = lookup('bootstrap::auth::ssh_authorized_keys', {merge => hash})
+  $groups = lookup('bootstrap::auth::groups', {merge => hash})
 
   $user_defaults = {
     ensure         => 'present',

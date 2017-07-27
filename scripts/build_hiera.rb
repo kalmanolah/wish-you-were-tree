@@ -16,7 +16,7 @@ class ErbalT < OpenStruct
 end
 
 # Iterate over all .erb files in the hiera/ dir
-Dir[File.dirname(__FILE__) + '/../code/environments/*/hieradata/**/*.erb'].each do |file|
+Dir[File.dirname(__FILE__) + '/../code/environments/*/data/**/*.erb'].each do |file|
     # Grab raw template contents
     template = File.open(file, 'rb') { |f| f.read }
 

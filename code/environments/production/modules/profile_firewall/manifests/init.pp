@@ -2,8 +2,8 @@ class profile_firewall (
     $purge_rules  = false,
     $purge_chains = false,
 ) {
-    $firewalls = hiera_hash('profile_firewall::firewall_rules', {})
-    $firewallchains = hiera_hash('profile_firewall::firewall_chains', {})
+    $firewalls = lookup('profile_firewall::firewall_rules', {merge => hash})
+    $firewallchains = lookup('profile_firewall::firewall_chains', {merge => hash})
 
     $firewall_defaults = {}
     $firewallchain_defaults = {}

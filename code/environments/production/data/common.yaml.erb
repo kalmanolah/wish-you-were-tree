@@ -55,70 +55,74 @@ bootstrap::auth::ssh_authorized_keys:
         user: kalman
 
 bootstrap::extras::packages:
-    ? - scrot
-      - wget
-      - ncdu
-      - htop
-      - mpv
-      - mpd
-      - ncmpcpp
-      - gnome-core
-      - gnome-screensaver
-      - awesome
-      - awesome-extra
-      - nautilus-dropbox
-      - encfs
-      - gnome-encfs-manager
-      - zsh
-      - gnupg
-      - gnupg2
-      - irssi
-      - irssi-plugin-xmpp
-      - irssi-scripts
-      - keepassx
-      - git
-      - nfs-common
-      - cifs-utils
-      - rpcbind
-      - python-pip
-      - numlockx
-      - rxvt-unicode-256color
-      - vim-gtk
-      - xbacklight
-      - eid-viewer
-      - eid-mw
-      # - sublime-text-installer
-      - xsel
-      - xclip
-      - disper
-      - tig
-      - spotify-client
-      - google-talkplugin
-      - iotop
-      - dcfldd
-      - pv
-      - dialog
-      - jq
-      - redshift-gtk
-      - atom
-      - php-codesniffer
-      - phpmd
-      - docker.io
-      - docker-compose
-      - puppet-lint
-      # - ambiance-colors
-      # - vivacious-colors
-      # - blueproximity
-      - qbittorrent
-    : {}
+    scrot: {}
+    wget: {}
+    ncdu: {}
+    htop: {}
+    mpv: {}
+    mpd: {}
+    ncmpcpp: {}
+    gnome-core: {}
+    gnome-screensaver: {}
+    awesome:
+        ensure: held
+    awesome-extra: {}
+    nautilus-dropbox: {}
+    encfs: {}
+    gnome-encfs-manager: {}
+    zsh: {}
+    gnupg: {}
+    gnupg2: {}
+    irssi: {}
+    irssi-plugin-xmpp: {}
+    irssi-scripts: {}
+    keepassx: {}
+    git: {}
+    nfs-common: {}
+    cifs-utils: {}
+    rpcbind: {}
+    python-pip: {}
+    numlockx: {}
+    rxvt-unicode-256color: {}
+    vim-gtk: {}
+    xbacklight: {}
+    eid-viewer: {}
+    eid-mw: {}
+    # sublime-text-installer: {}
+    xsel: {}
+    xclip: {}
+    disper: {}
+    tig: {}
+    spotify-client: {}
+    google-talkplugin: {}
+    iotop: {}
+    dcfldd: {}
+    pv: {}
+    dialog: {}
+    jq: {}
+    redshift-gtk: {}
+    atom: {}
+    php-codesniffer: {}
+    phpmd: {}
+    docker.io: {}
+    docker-compose: {}
+    puppet-lint: {}
+    # ambiance-colors: {}
+    # vivacious-colors: {}
+    # blueproximity: {}
+    qbittorrent: {}
 
-    ? - sshuttle
-      - speedtest-cli
-      - httpstat
-      - pep8
-      - flake8
-      - flake8-docstrings
-    :
+    sshuttle:
+        provider: pip
+    speedtest-cli:
+        provider: pip
+    httpstat:
+        provider: pip
+    pep8:
+        provider: pip
+    flake8:
+        provider: pip
+    flake8-docstrings:
         provider: pip
 
 bootstrap::extras::vcsrepos:
@@ -174,36 +178,119 @@ bootstrap::extras::archives: {}
     #     require: File[/home/kalman/misc]
 
 bootstrap::extras::files:
-    ? - /home/kalman
-      - /home/kalman/misc
-      - /home/kalman/misc/nas
-      - /home/kalman/misc/nas/misc
-      - /home/kalman/misc/nas/download
-      - /home/kalman/misc/nas/multimedia
-      - /home/kalman/misc/nas/public-nfs
-      # - /home/kalman/misc/tmsu-vfs
-      - /home/kalman/misc/firefox
-      - /home/kalman/bin
-      - /home/kalman/.cache
-      - /home/kalman/.cache/awesome
-      - /home/kalman/.irssi
-      - /home/kalman/.irssi/scripts
-      - /home/kalman/.irssi/scripts/autorun
-      - /home/kalman/.urxvt
-      - /home/kalman/.ncmpcpp
-      - /home/kalman/.gnupg
-      - /home/kalman/.config
-      # - /home/kalman/.config/sublime-text-3
-      # - /home/kalman/.config/sublime-text-3/Local
-      # - /home/kalman/.config/sublime-text-3/Packages
-      - /home/kalman/.ssh
-      - /home/kalman/.mpd
-      - /home/kalman/.fonts
-      - /home/kalman/.blueproximity
-      - /home/kalman/Music
-      - /home/kalman/Pictures
-      - /home/kalman/Pictures/screenshots
-    :
+    /home/kalman:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/misc:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/misc/nas:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/misc/nas/misc:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/misc/nas/download:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/misc/nas/multimedia:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/misc/nas/public-nfs:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    # /home/kalman/misc/tmsu-vfs:
+    #     ensure: directory
+    #     owner: kalman
+    #     group: kalman
+    /home/kalman/misc/firefox:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/bin:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.cache:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.cache/awesome:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.irssi:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.irssi/scripts:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.irssi/scripts/autorun:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.urxvt:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.ncmpcpp:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.gnupg:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.config:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    # /home/kalman/.config/sublime-text-3:
+    #     ensure: directory
+    #     owner: kalman
+    #     group: kalman
+    # /home/kalman/.config/sublime-text-3/Local:
+    #     ensure: directory
+    #     owner: kalman
+    #     group: kalman
+    # /home/kalman/.config/sublime-text-3/Packages:
+    #     ensure: directory
+    #     owner: kalman
+    #     group: kalman
+    /home/kalman/.ssh:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.mpd:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.fonts:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/.blueproximity:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/Music:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/Pictures:
+        ensure: directory
+        owner: kalman
+        group: kalman
+    /home/kalman/Pictures/screenshots:
         ensure: directory
         owner: kalman
         group: kalman
@@ -474,6 +561,8 @@ bootstrap::extras::mounts:
     #     device: /home/kalman/.tmsu/default.db
     #     options: user,noauto
 
+bootstrap::extras::cronjobs: {}
+
 bootstrap::extras::augeas:
     set_fuse_conf:
         context: /files/etc/fuse.conf
@@ -555,9 +644,16 @@ bootstrap::extras::services:
         enable: false
         provider: systemd
 
+profile_firewall::firewall_chains: {}
+
 profile_firewall::firewall_rules:
     '150 allow port 6881 access to qbittorrent':
         parameters:
             dport:  6881
             proto:  tcp
+            action: accept
+
+    '001 allow access for gre protocol (PPTP tunnels)':
+        parameters:
+            proto:  gre
             action: accept
