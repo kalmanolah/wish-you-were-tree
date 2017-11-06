@@ -537,7 +537,7 @@ bootstrap::extras::mounts:
     /home/kalman/misc/nas/misc:
         fstype: cifs
         device: //suzuna/Miscellaneous
-        options: user,noauto,uid=kalman,credentials=/home/kalman/.mynascredentials_admin
+        options: user,noauto,uid=kalman,vers=2.1,credentials=/home/kalman/.mynascredentials_admin
         require:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials_admin]
@@ -545,7 +545,7 @@ bootstrap::extras::mounts:
     /home/kalman/misc/nas/download:
         fstype: cifs
         device: //suzuna/Download
-        options: user,noauto,uid=kalman,credentials=/home/kalman/.mynascredentials_admin
+        options: user,noauto,uid=kalman,vers=2.1,credentials=/home/kalman/.mynascredentials_admin
         require:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials_admin]
@@ -553,7 +553,7 @@ bootstrap::extras::mounts:
     /home/kalman/misc/nas/multimedia:
         fstype: cifs
         device: //suzuna/Multimedia
-        options: user,noauto,uid=kalman,credentials=/home/kalman/.mynascredentials_medea
+        options: user,noauto,uid=kalman,vers=2.1,credentials=/home/kalman/.mynascredentials_medea
         require:
             - Package[cifs-utils]
             - File[/home/kalman/.mynascredentials_medea]
