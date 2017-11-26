@@ -128,5 +128,5 @@ apt::sources:
         include:
             src: false
 
-bootstrap::extras::packages:
-    apt-transport-https: {}
+# bootstrap::extras::packages:
+#     apt-transport-https: {}

@@ -104,8 +104,8 @@ bootstrap::extras::packages:
     atom: {}
     php-codesniffer: {}
     phpmd: {}
-    docker.io: {}
-    docker-compose: {}
+    # docker.io: {}
+    # docker-compose: {}
     puppet-lint: {}
     # ambiance-colors: {}
     # vivacious-colors: {}
@@ -518,6 +518,14 @@ bootstrap::extras::files:
         source: /usr/share/applications/redshift-gtk.desktop
         require: Package[redshift-gtk]
         replace: false
+
+    # Ledger
+    /etc/udev/rules.d/50-ledger.rules:
+        ensure: present
+        source: puppet:///modules/bootstrap/udev/50-ledger.rules
+        owner: root
+        group: root
+        mode: '0644'
 
     # Other
     /home/kalman/Pictures/wallpapers:
