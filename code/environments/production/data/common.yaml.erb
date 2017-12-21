@@ -216,6 +216,10 @@ bootstrap::extras::files:
         ensure: directory
         owner: kalman
         group: kalman
+    /home/kalman/misc/thunderbird:
+        ensure: directory
+        owner: kalman
+        group: kalman
     /home/kalman/bin:
         ensure: directory
         owner: kalman
@@ -607,6 +611,13 @@ bootstrap::extras::execs:
         user: kalman
         group: kalman
         require: File[/home/kalman/misc/firefox]
+
+    download_thunderbird:
+        command: curl -L -o /tmp/thunderbird.tar.bz2 'https://download.mozilla.org/?product=thunderbird-beta-latest&os=linux64&lang=en-US' && tar xjf /tmp/thunderbird.tar.bz2 -C /home/kalman/misc/thunderbird --strip-components=1
+        unless: test -x /home/kalman/misc/thunderbird/thunderbird
+        user: kalman
+        group: kalman
+        require: File[/home/kalman/misc/thunderbird]
 
 bootstrap::extras::file_lines:
     gnome_keyring_pkcs11_show_in:
