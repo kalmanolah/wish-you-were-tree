@@ -75,17 +75,17 @@ apt::sources:
     #         src: false
     #     key: DF3D585DB8F0EB658690A554AC0E47584A7A714D
 
-    # eid:
-    #     location: http://files.eid.belgium.be/debian
-    #     release: jessie
-    #     repos: main
-    #     include:
-    #         src: false
-    #     # key: 6773D225
-    #     key:  B37D9040098C3DEEE00F6D08A35743EA6773D225
-    #     notify:
-    #         - Package[eid-viewer]
-    #         - Package[eid-mw]
+    eid:
+        location: http://files.eid.belgium.be/debian
+        release: bionic
+        repos: main
+        include:
+            src: false
+        # key: 6773D225
+        key:  B37D9040098C3DEEE00F6D08A35743EA6773D225
+        notify:
+            - Package[eid-viewer]
+            - Package[eid-mw]
 
     webupd8_atom:
         location: http://ppa.launchpad.net/webupd8team/atom/ubuntu
@@ -127,6 +127,8 @@ apt::sources:
         key: 37C84554E7E0A261E4F76E1ED26E6ED000654A3E
         include:
             src: false
+        notify:
+            - Package[syncthing]
 
 # bootstrap::extras::packages:
 #     apt-transport-https: {}
